@@ -1,4 +1,9 @@
-! ##############mesc_inout.f90###########################
+!> this part does input/output
+!! do the following tasks
+!! do task 1
+!! do task 2
+!! do task 3
+!!
   subroutine vmic_restart_read(miccpool,micnpool,frestart_in)
   ! read soil carbon pool sizes "miccpool%cpool(mp,ms,mcpool)"
     use netcdf
