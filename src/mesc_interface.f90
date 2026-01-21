@@ -1,3 +1,14 @@
+!> interface between the "mesc_function.f90" and "mesc_model.f90" for doing the following tasks
+!! (1) assign parameter values (vmic_param_xscale) or read parameter values from lookup table (functn_global)
+!! (2) calling one of the following routines
+!!     vmicsoil_c14; vmicsoil_frc1_cpu; vmicsoil_hwsd_cpu
+!! (3) within each of three subroutines; we do the following tasks
+!! (3a) assign parameters with constant values across different "bgc types"
+!! (3b) assign initial pool sizes
+!! (3c) compute time-varying parameter values
+!! (3d) read in restart file (if) jrestart==1
+!! (3d) call model for each of mp and integration over time 
+!!
 ! ##############mesc_interface.f90###########################
 !
 SUBROUTINE vmic_param_constant(kinetics,micpxdef,micpdef,micparam,zse) 
