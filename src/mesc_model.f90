@@ -1,4 +1,7 @@
-
+!> The core routines for the mesc_model
+!! calculate model parameters as function of enrvironmental variablles that vary with time
+!! model integration using rk4
+!!
 ! ##############mesc_model.f90###########################   
     subroutine rk4modelx(timex,delty,ny,isoc14,np,ns,kinetics,micpdef,micparam,micinput,xpool0,xpool1)
     use mic_constant
