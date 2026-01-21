@@ -1,4 +1,11 @@
-! ###############mesc_function.f90###########################
+!> functions to be called by the function functn called from main.for
+!! functn: called from main.for with the following options from "case.txt"
+!! functn_c14 (case=1):       12C and 14C                   
+!! functn_frc1 (case=2):      SOC fractions                        
+!! functn_soc_wosis(case=3):  WOSIS SOC profiles  (not activated)    
+!! functn_soc_hwsd (case=4):  hwsd SOC profiles      
+!! functn_global (case=5):    global SOC profile (not activated) 
+!! ###############mesc_function.f90###########################
 !
  real*8 function functn_c14(nx,xparam16)
    use mic_constant
@@ -199,7 +206,7 @@ real*8 function functn_frc1(nx,xparam16)
                         zse,micpxdef,micpdef,micparam,micinput,micglobal,miccpool,micnpool,micoutput)
 
     !  print *, 'calcost_frc1'
-      call calcost_frc1(nx,bgcopt,xopt,micpxdef,micparam,miccpool,micinput,zse,totcost1)
+      call calcost_frc1(nx,bgcopt,xopt,micpxdef,micparam,miccpool,micinput,micglobal,zse,totcost1)
       
       close(1)
 
