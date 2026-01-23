@@ -209,13 +209,13 @@
 
             endif
 
-            write(91,901) micparam%siteid(np),micparam%pft(np),micparam%isoil(np),micparam%sorder(np), &
+            write(91,901) micparam%siteid(np),micparam%pft(np), &
                           micparam%bgctype(np),micglobal%area(np),xtop,xbot, &
                           xobsp(np),xmodp(np),xobsm(np),xmodm(np),xobsfracp(np),xmodfracp(np),xobsfracm(np),xmodfracm(np)
 
                   
             do ns = 1,ms
-               write(92,921) micparam%siteid(np),micparam%pft(np),micparam%isoil(np),micparam%sorder(np), &
+               write(92,921) micparam%siteid(np),micparam%pft(np), &
                              micparam%bgctype(np),micglobal%area(np),ns,xtop,xbot,                        &
                            (1000.0*miccpool%cpooleq(np,ns,ip)/micinput%bulkd(np,ns),ip=1,mcpool)
 
@@ -230,8 +230,8 @@
       deallocate(xmod,xmodp,xmodm)
       deallocate(xmodfracp,xmodfracm,xobsfracp,xobsfracm)
 
-901   format(i6,1x,4(i3,1x),f8.3,1x,2(f7.3,1x),10(f12.4,1x))
-921   format(i6,1x,4(i3,1x),f8.3,1x,i2,1x,2(f7.3,1x),14(f12.4,1x))
+901   format(i6,1x,2(i3,1x),f8.3,1x,2(f7.3,1x),10(f12.4,1x))
+921   format(i6,1x,2(i3,1x),f8.3,1x,i2,1x,2(f7.3,1x),14(f12.4,1x))
 
 
     end SUBROUTINE calcost_frc1

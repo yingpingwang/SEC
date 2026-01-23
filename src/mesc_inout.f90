@@ -578,6 +578,30 @@
     
    end subroutine getdata_c14
 
+!> get dimeions: mp from the c fraction input file
+!! 
+   subroutine getdata_frc_dim(cfraction,mpx)
+    use netcdf
+    use mic_constant
+    use mic_variable
+    implicit none
+    character*140 cfraction   
+    integer mpx
+    integer:: ncid,varid,status
+   ! open .nc file
+    status = nf90_open(cfraction,nf90_nowrite,ncid)
+    if(status /= nf90_noerr) print*, 'Error opening c_fraction.nc'
+
+    ! get dimension
+    status = nf90_inq_dimid(ncid,'nsite',varid)
+    if(status /= nf90_noerr) print*, 'Error inquiring dimensions/nsite'
+    status = nf90_inquire_dimension(ncid,varid,len=mpx)
+    if(status /= nf90_noerr) print*,'Error dimensions/nsite'
+ 
+    ! Close netcdf file
+    status = NF90_CLOSE(ncid)   
+   end subroutine  getdata_frc_dim   
+
 !> read in data for model run to calculate POC and MAOC fractions
 !! 
    SUBROUTINE getdata_frc(cfraction,filecluster,jglobal,bgcopt,micinput,micparam,micnpool,zse)
@@ -950,11 +974,11 @@
     status = nf90_open(fhwsdsoc,nf90_nowrite,ncid)
     if(status /= nf90_noerr) print*, 'Error opening c_fraction.nc'
 
-    ! get dimensions/profile_id
+    ! get dimensions
     status = nf90_inq_dimid(ncid,'nsite',varid)
     if(status /= nf90_noerr) print*, 'Error inquiring dimensions/nsite'
     status = nf90_inquire_dimension(ncid,varid,len=mpx)
-    if(status /= nf90_noerr) print*,'Error reading profile_id'
+    if(status /= nf90_noerr) print*,'Error dimensions/nsite'
   
     !
     status = nf90_inq_dimid(ncid,'time',varid)

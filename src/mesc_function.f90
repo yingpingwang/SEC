@@ -151,7 +151,8 @@ real*8 function functn_frc1(nx,xparam16)
     character*140 frestart_in,frestart_out,foutput
     character*140 cfraction,filecluster
     real(r_2), dimension(:), allocatable :: zse
-
+    integer mpx
+    
       jrestart=0;xopt(:)=1.0
       do nparam=1,16
          nxopt(nparam) = nparam
@@ -178,8 +179,8 @@ real*8 function functn_frc1(nx,xparam16)
     !  print *, xopt
       
       close(1)
-      !mp = 2210
-      mp = 2206;ntime=1
+      !mp = 2206
+      ntime=1
       
       totcost1 = 0.0
       nyeqpool= 1000
@@ -189,7 +190,8 @@ real*8 function functn_frc1(nx,xparam16)
       allocate(zse(ms))
       zse(1) =0.02;zse(2)=0.04;zse(3)=0.06;zse(4)=0.08
       zse(5:8)=0.2;zse(9:10)=0.5
-      
+      call getdata_frc_dim(cfraction,mpx)
+      mp = mpx
       call mic_allocate_parameter(mpft,mbgc,mp,ms,micpxdef,micparam)
       call mic_allocate_input(mp,ms,nlon,nlat,ntime,micinput,micglobal)
       call mic_allocate_output(mp,micoutput)
