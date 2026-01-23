@@ -1249,8 +1249,12 @@
              micglobal%tsoil(np,ns,:) = real(tsoil7(np,ns-3,:),kind=r_2)
              micglobal%moist(np,ns,:) = real(moist7(np,ns-3,:),kind=r_2)
              micglobal%matpot(np,ns,:)= real(watpot7(np,ns-3,:),kind=r_2)  
+             ! filter out sites with SOC >12 gc/kg (organic soil: Lourenco ett al. 2022)
+             if(micparam%csoilobs(np,ns) >=12.0) then 
+                micglobal%area(np) = -1.0
+             endif   
           endif          
-
+      
           if(micparam%csoilobs(np,ns) >0.0 .and. micparam%csoilobs(np,ns) < 1000.0) nsocobs = nsocobs + 1
 
        enddo 

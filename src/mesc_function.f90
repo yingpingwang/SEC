@@ -318,7 +318,6 @@ END function functn_frc1
       call mic_deallocate_cpool(mp,ms,miccpool)
       call mic_deallocate_npool(mp,ms,micnpool) 
 
-      close(1)
       call screenout('hwsd_soc',jmodel,bgcopt,xopt,totcost1)      
         
 
