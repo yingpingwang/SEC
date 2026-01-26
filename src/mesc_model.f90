@@ -143,13 +143,12 @@
       
     end subroutine Vmaxt
 
-    subroutine Desorpt(micpxdef,micpdef,micparam,micinput)
+    subroutine Desorpt(micpxdef,micparam,micinput)
       use mic_constant
       use mic_variable
       implicit none
-!      real(r_2)              xdesorp
+      real(r_2), parameter ::  desorp_def =1.5e-5     !only used fir kinetics=1 or 2
       TYPE(mic_param_xscale),  INTENT(IN)     :: micpxdef
-      TYPE(mic_param_default), INTENT(IN)     :: micpdef
       TYPE(mic_parameter), INTENT(INOUT)      :: micparam 
       TYPE(mic_input), INTENT(IN)             :: micinput
       integer nopt,np,ns 
@@ -157,7 +156,8 @@
      do np=1,mp
       do ns=1,ms 
          nopt=micparam%bgctype(np)
-         micparam%desorp(np,ns) = micpxdef%xdesorp(nopt) * (1.5e-5) * exp(-1.5*micinput%clay(np,ns)) 
+!         micparam%desorp(np,ns) = micpxdef%xdesorp(nopt) * (1.5e-5) * exp(-1.5*micinput%clay(np,ns)) 
+         micparam%desorp(np,ns) = micpxdef%xdesorp(nopt) * desorp_def * exp(-1.5*micinput%clay(np,ns)) 
       enddo
      enddo
 
