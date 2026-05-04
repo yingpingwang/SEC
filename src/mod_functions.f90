@@ -353,7 +353,7 @@ END function functn_soc_hwsd
       do nparam=1,16
          nxopt(nparam) = nparam
       enddo
-      xopt =xparam16(1:nx) 
+      xopt = 1.0
       
 !      open(91,file='modobs.txt')
 !      open(92,file='modobs2.txt')
@@ -391,8 +391,8 @@ END function functn_soc_hwsd
 
       print *, ' all  arrays are allocated!'
 
-      if(jmodel==1) call getdata_global_cable(fglobal,jglobal,jmodel,micglobal,micparam,zse)
-      if(jmodel==2 .or. jmodel==3) call getdata_global_orchidee(fglobal,jglobal,jmodel,micglobal,micparam,zse)
+      if(jmodel==1)                call getdata_global_cable(fglobal,jglobal,bgcopt,jopt,jmodel,micglobal,micparam,zse)
+      if(jmodel==2 .or. jmodel==3) call getdata_global_orchidee(fglobal,jglobal,bgcopt,jopt,jmodel,micglobal,micparam,zse)
       print *, 'global input data are read in'
       
       if(jopt==0) call getparam_global(fglobal(4),jmodel,micpxdef)     ! reading global parameter lookup table
